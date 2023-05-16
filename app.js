@@ -146,6 +146,7 @@ function clearBoard() {
     for (let i = 0; i < 9; i++) {
         cleared[i] = "";
     }
+    console.log(cleared);
     return cleared;
 }
 
