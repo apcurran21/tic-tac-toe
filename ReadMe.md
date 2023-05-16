@@ -21,4 +21,13 @@ Hi! this is just a small project to give me more experience coding in JavaScript
         * clears the board
         * gives the first turn to whoever didn't start the previous game
 
-
+### Functionality
+The program needs to do the following:
+* track clicks on the squares
+* check if a valid move has been made
+    * ie nothing happens if the player clicks on an occupied square
+* update and validate game state after a valid move
+    * ie after storing a player's move, needs to check for winners or a draw
+* display current game state
+    * if the games ends, display appropriate message and offer opportunity to restart
+    * if the game doesn't end, display the updated board and player turn
