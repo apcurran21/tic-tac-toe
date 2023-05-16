@@ -9,8 +9,7 @@ const statusDisplay = document.querySelector(".game--status");
 let gameActive = true;
 let currPlayer = "X";
 // store the state of the game in an array of size 9
-let gameState = [];
-clearBoard(gameState);
+let gameState = clearBoard();
 
 // Creating messages for display during gameplay
 //  - since these messages are dynamic and can change based on the current 
@@ -18,9 +17,9 @@ clearBoard(gameState);
 //  - more specifically, arrow functions: from the documentation, 
 //     - an arrow function espression is a compact alternative to a
 //       traditional function expression
-const winMessage = () => "Congrats! ${currPlayer} won!";
-const drawMessage = () => "It's a draw ...";
-const currTurnMessage = () => "It's ${currPlayer}'s turn.";
+const winMessage = () => `Congrats! ${currPlayer} won!`;
+const drawMessage = () => `It's a draw ...`;
+const currTurnMessage = () => `It's ${currPlayer}'s turn.`;
 
 // Set an initial message to indicate the player's first turn
 //  - later we can randomize this
@@ -98,7 +97,8 @@ function handleGameValidation() {
     }
 
     // outcome if there's a draw
-    if (!gameState.includes("")) {
+    let roundDraw = !gameState.includes("")
+    if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;
@@ -133,7 +133,7 @@ function handleSquareClick(clickedSquareEvent) {
 function handleGameReset() {
     gameActive = true;
     currPlayer = "X";    /* later we can randomize this, switch players, etc*/
-    clearBoard(gameState);
+    gameState = clearBoard();
     statusDisplay.innerHTML = currTurnMessage();
     document.querySelectorAll(".square").forEach(square => square.innerHTML = "");
 }
@@ -141,12 +141,14 @@ function handleGameReset() {
 // Utility functions
 //
 // initializes / sets the board to default
-function clearBoard(arr) {
+function clearBoard() {
+    cleared = []
     for (let i = 0; i < 9; i++) {
-        arr[i] = "";
+        cleared[i] = "";
     }
+    return cleared;
 }
 
 // Event listeners for squares and reset button
 document.querySelectorAll(".square").forEach(square => square.addEventListener("click", handleSquareClick));
-document.querySelector("game--reset").addEventListener("click", handleGameReset);
+document.querySelector(".game--reset").addEventListener("click", handleGameReset);
