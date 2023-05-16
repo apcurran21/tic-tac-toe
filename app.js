@@ -7,7 +7,9 @@ const statusDisplay = document.querySelector(".game--status");
 //  - javascript note: if we think that the value of a variable can change,
 //    then use the "let" keyword for declaration
 let gameActive = true;
-let currPlayer = "X";
+// randomize the first player
+const a = Math.random();
+let currPlayer = a < 0.5 ? "X" : "O";
 // store the state of the game in an array of size 9
 let gameState = clearBoard();
 
@@ -132,7 +134,8 @@ function handleSquareClick(clickedSquareEvent) {
 // reset the game to default after its conclusion
 function handleGameReset() {
     gameActive = true;
-    currPlayer = "X";    /* later we can randomize this, switch players, etc*/
+    // switch players based off who started the prev round
+    currPlayer = currPlayer === "X" ? "O" : "X";
     gameState = clearBoard();
     statusDisplay.innerHTML = currTurnMessage();
     document.querySelectorAll(".square").forEach(square => square.innerHTML = "");
@@ -146,6 +149,7 @@ function clearBoard() {
     for (let i = 0; i < 9; i++) {
         cleared[i] = "";
     }
+    console.log(cleared);
     return cleared;
 }
 
