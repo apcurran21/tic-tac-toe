@@ -1,4 +1,4 @@
-### Tic Tac Toe project
+# Tic Tac Toe project
 
 Hi! this is just a small project to give me more experience coding in JavaScript, HTML, and CSS.
 
